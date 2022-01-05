@@ -1,0 +1,10 @@
+.saveState {
+    height: 20%;
+    display: flex;
+    padding: 3vmin;
+    justify-content: space-around;
+}
+.saveStateHeading {
+    align-self: center;
+    width: 34%;
+}

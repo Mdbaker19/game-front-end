@@ -1,0 +1,13 @@
+.fullBox {
+    display: flex;
+    flex-direction: column;
+}
+
+.itemOptions {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.alignEnd {
+    align-self: end;
+}

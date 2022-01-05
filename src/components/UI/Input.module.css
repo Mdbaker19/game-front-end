@@ -1,0 +1,7 @@
+.label {
+    padding: 0.5vmin;
+    border-radius: 5px;
+}
+.error {
+    background: #cc7c7c;
+}

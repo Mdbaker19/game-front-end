@@ -1,0 +1,10 @@
+.loadForm {
+    margin: 25vmin;
+    box-shadow: -2px 3px 0 0 #434343;
+    width: 45vmin;
+    height: 45vmin;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}

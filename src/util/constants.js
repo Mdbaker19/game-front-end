@@ -1,0 +1,1 @@
+export const enemyTypes = ['animal', 'human', 'flying'];

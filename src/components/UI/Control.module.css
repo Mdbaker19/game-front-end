@@ -1,0 +1,7 @@
+.controls {
+    background: blanchedalmond;
+    padding: .5vmin;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: inset -1px -1px 6px 1px #193a41;
+}

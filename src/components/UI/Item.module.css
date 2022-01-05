@@ -1,0 +1,7 @@
+.item {
+    box-shadow: inset -5px -4px 7px 4px #525151;
+    border-radius: 5px;
+    padding: 0.5rem;
+    margin: 1.1vmin;
+    width: 43%;
+}
