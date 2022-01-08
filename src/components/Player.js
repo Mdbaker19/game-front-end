@@ -3,8 +3,9 @@ import FightInventory from './UI/FightInventory';
 import {useContext, useState} from 'react';
 import GameContext from '../store/game-context';
 import {formatName} from '../util/format';
+import classes from './Player.module.css';
 
-const Player = props => {
+const Player = () => {
     const [state, playerCtx] = useContext(GameContext);
     const [showItems, setShowItems] = useState(false);
 
@@ -37,6 +38,9 @@ const Player = props => {
                     useItem={playerUseItem}
                     closeInventory={closeInventoryHandler}
                 />}
+                <div className={classes.outerHealth}>
+                    <div id="innerHealthBar" style={{width: `${player.exp}%`}} className={classes.healthBar}/>
+                </div>
             </div>
         </Card>
     )

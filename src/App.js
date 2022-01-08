@@ -8,13 +8,9 @@ import GameProvider from './store/game-provider';
 import {getPlayerData} from './actions/Game-fetch-get';
 import {useState} from 'react';
 
-// fight functionality
 // store / shop
-// refactor to application wide context state management
-// attack and get attacked from enemy
 // use items, items need unique id's or something to pull from / update player inventory list data
 // refactor items display to have a count rather than list it multi times
-// get the enemy to update with the state change. the main app does not re-render on fight so enemy does not either..
 
 function App() {
 

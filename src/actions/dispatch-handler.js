@@ -1,3 +1,4 @@
+import * as stateFN from '../util/stateFunctions';
 
 export const dispatchHandler = (state, action) => {
     console.log("ACTION: ", action);
@@ -16,12 +17,14 @@ export const dispatchHandler = (state, action) => {
             // }
             return {...state, player: updatedPlayer};
         case 'DAMAGE':
+            let enemy = stateFN.checkForDeath(action.payload, state.player);
+            console.log(enemy);
             let updatedPlayerH = {...state.player, health: state.player.health - 1};
-            return {...state, player: updatedPlayerH, enemy: action.payload};
+            return {...state, player: updatedPlayerH, enemy};
         case 'START_GAME':
-            const player = action.payload?.player;
-            const enemy = action.payload?.enemy;
-            return {...state, player, enemy};
+            const playerStart = action.payload?.player;
+            let enemyStart = action.payload?.enemy;
+            return {...state, player: playerStart, enemy: enemyStart};
             // return {player, enemy, ...state};
         case 'd':
             return {...state, newData: ''};

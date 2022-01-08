@@ -1,0 +1,7 @@
+.healthBar {
+    height: 100%;
+    background: green;
+}
+.outerHealth {
+    height: 30px;
+}
