@@ -1,3 +1,4 @@
+
 export const dispatchHandler = (state, action) => {
     console.log("ACTION: ", action);
     switch (action.type) {
@@ -13,21 +14,21 @@ export const dispatchHandler = (state, action) => {
             //         do not add, something here and ^^... placeholder for now
                 // }
             // }
-            return {player: updatedPlayer, ...state};
+            return {...state, player: updatedPlayer};
         case 'DAMAGE':
-            return {enemy: action.payload, ...state};
+            let updatedPlayerH = {...state.player, health: state.player.health - 1};
+            return {...state, player: updatedPlayerH, enemy: action.payload};
         case 'START_GAME':
-            let player = action.payload?.saveChoice?.data;
+            const player = action.payload?.player;
             const enemy = action.payload?.enemy;
-            // player.saveId = action.payload?.saveChoice?.saveId;
-            return {player, enemy, ...state};
+            return {...state, player, enemy};
             // return {player, enemy, ...state};
         case 'd':
-            return {newData: '', ...state};
+            return {...state, newData: ''};
         case 'e':
-            return {newData: '', ...state};
+            return {...state, newData: ''};
         case 'f':
-            return {newData: '', ...state};
+            return {...state, newData: ''};
         default:
             return state;
     }

@@ -6,7 +6,6 @@ import SaveStates from './components/SaveStates';
 import LoadForm from './components/LoadForm';
 import GameProvider from './store/game-provider';
 import {getPlayerData} from './actions/Game-fetch-get';
-import {postPlayerData} from './actions/Game-fetch-post';
 import {useState} from 'react';
 
 // fight functionality
@@ -22,8 +21,6 @@ function App() {
     const [isPlayerExists, setIsPlayerExists] = useState(false);
     const [isSavesLoaded, setIsSavesLoaded] = useState(false);
 
-    const [player, setPlayer] = useState({});
-    const [enemy, setEnemy] = useState({});
     const [playerName, setPlayerName] = useState("Unknown");
 
     const [saveOptions, setSaveOptions] = useState([]);
@@ -43,17 +40,8 @@ function App() {
         setError(errorRes);
     }
     
-    const pickThisSaveHandler = (data) => {
-        setPlayer(data.player);
-        setEnemy(data.enemy);
-        setIsPlayerExists(true);
-    }
+    const pickThisSaveHandler = () => setIsPlayerExists(true);
     
-    const saveGameHandler = async () => {
-        const {res} = await postPlayerData(player);
-        console.log("Game saved: ", res);
-    }
-
     console.log("Main App re-render")
     return (
         <GameProvider>
@@ -66,12 +54,11 @@ function App() {
                 {isPlayerExists &&
                     <main className="container">
                         <section className="player-enemy">
-                            <Player player={player}/>
-                            <Enemy enemy={enemy}/>
+                            <Player />
+                            <Enemy />
                         </section>
                         <section className="controls">
-                            <Control text={"Fight"} enemy={enemy}/>
-                            <button onClick={saveGameHandler}>Save game</button>
+                            <Control text={"Fight"} />
                         </section>
                     </main>
                 }

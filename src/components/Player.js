@@ -5,8 +5,6 @@ import GameContext from '../store/game-context';
 import {formatName} from '../util/format';
 
 const Player = props => {
-    console.log("In player ", props);
-    const {player} = props;
     const [state, playerCtx] = useContext(GameContext);
     const [showItems, setShowItems] = useState(false);
 
@@ -22,6 +20,8 @@ const Player = props => {
         setShowItems(false);
     }
 
+    const player = state.player;
+
     return (
         <Card>
             <div>
@@ -30,6 +30,7 @@ const Player = props => {
             <div>
                 <h1>{formatName(player.name)}</h1>
                 <h3>Level: {player.playerLvl}</h3>
+                <h3>HP: {player.health}</h3>
                 {!showItems && <button onClick={showItemsHandler}>View Inventory</button>}
                 {showItems && <FightInventory
                     items={player.inventory}

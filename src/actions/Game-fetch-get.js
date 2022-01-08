@@ -13,6 +13,7 @@ export const getPlayerData = async (name) => {
         playerNameRes = name;
         isSavesLoadedRes = true;
     } catch (err) {
+        isSavesLoadedRes = false;
         errorRes = "Sorry, something seems to be wrong here";
     }
     

@@ -10,8 +10,10 @@ const SaveStates = props => {
     const [state, loginCtx] = useContext(GameContext);
     
     const playerDataUI = (playerSaveOne) => {
+        console.log(playerSaveOne);
         return `Level: ${playerSaveOne.lvl},
          Player Lvl: ${playerSaveOne.playerLvl}, 
+         HP: ${playerSaveOne.health}, 
          Inventory: ${playerSaveOne.inventory?.length} items`;
     }
     
@@ -26,7 +28,7 @@ const SaveStates = props => {
         };
         let data = {player, enemy};
         loginCtx.startGame(data);
-        props.loadThisSave(data);
+        props.loadThisSave();
     }
     
     return (
