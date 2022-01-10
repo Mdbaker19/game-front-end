@@ -5,13 +5,8 @@ export const getRandomType = () => {
     return [gameConst.enemyTypes[idx], gameConst.enemyImgs[idx]];
 }
 
-export const calcDamage = (player, enemy) => {
-    let pLvl = player.playerLvl;
-    return ~~(Math.random() * (pLvl / player.lvl));
-}
-
 export const checkForDeath = (enemy, player) => {
-    return enemy.health <= 0 ? getNextEnemy(enemy, player) : enemy;
+    return enemy.health <= 0 ? [getNextEnemy(enemy, player), true] : [enemy, false];
 }
 
 
@@ -25,6 +20,8 @@ function getNextEnemy(enemy, player) {
         level: enemy.level + 1,
         attack: 1,
         defense: 1,
-        speed: 1
+        speed: 1,
+        expReward: 10,
+        moneyReward: 10
     }
 }

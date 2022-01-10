@@ -37,7 +37,6 @@ function App() {
     
     const pickThisSaveHandler = () => setIsPlayerExists(true);
     
-    console.log("Main App re-render")
     return (
         <GameProvider>
             <div className="App">

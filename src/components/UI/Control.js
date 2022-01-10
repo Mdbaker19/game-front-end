@@ -1,7 +1,7 @@
 import classes from './Control.module.css';
 import {useContext} from 'react';
 import GameContext from '../../store/game-context';
-import {calcDamage} from '../../util/stateFunctions';
+import {getDamage, missChance} from '../../util/fightLogic';
 import {postPlayerData} from '../../actions/Game-fetch-post';
 
 const Control = props => {
@@ -10,7 +10,9 @@ const Control = props => {
     const saveGameHandler = async () => await postPlayerData(state.player);
 
     const updateEnemy = enemy => {
-        let playerDamage = calcDamage(state.player, enemy);
+        let ran = ~~(Math.random() * 100);
+        let missed = ran < missChance(state.player.speed, enemy.speed);
+        let playerDamage = missed ? 0 : getDamage(state.player.attack, enemy.defense);
         enemy.health -= playerDamage;
         let updated = {health: +enemy.health, ...enemy}
         gameCtx.updateEnemy(updated);

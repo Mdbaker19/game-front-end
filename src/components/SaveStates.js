@@ -1,7 +1,7 @@
 // import PropTypes from 'prop-types';
 import {useContext} from 'react';
 import GameContext from '../store/game-context';
-import {getRandomType} from '../util/stateFunctions';
+import {getEnemy} from '../util/enemyCreations';
 import SaveInventoryView from '../components/inventory-items/Inventory-view';
 import classes from './SaveState.module.css';
 import AccountView from '../components/UI/AccountView';
@@ -17,6 +17,7 @@ const SaveStates = props => {
                     Level: ${playerSaveOne.lvl},
                     Player Lvl: ${playerSaveOne.playerLvl},
                     HP: ${playerSaveOne.health},
+                    Wallet: ${playerSaveOne.wallet}
                     {<AccountView items={playerSaveOne.inventory} stats={playerSaveOne.stats}/>}
                 </>
         );
@@ -26,13 +27,8 @@ const SaveStates = props => {
         let saveChoice = props.saveOptions.filter(save => save.saveId === id)[0];
         let player = saveChoice.data;
         player.saveId = saveChoice.saveId;
-        let [type, img] = getRandomType();
-        let enemy = {
-            health: player.lvl * 10,
-            type,
-            img,
-            level: player.lvl
-        };
+        let enemy = getEnemy(player.lvl);
+        
         let data = {player, enemy};
         loginCtx.startGame(data);
         props.loadThisSave();

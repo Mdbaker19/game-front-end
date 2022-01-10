@@ -1,4 +1,5 @@
 import {checkForDeath} from '../util/stateFunctions';
+import {getDamage, missChance} from '../util/fightLogic';
 
 export const dispatchHandler = (state, action) => {
     console.log("ACTION: ", action);
@@ -12,8 +13,10 @@ export const dispatchHandler = (state, action) => {
             let updatedPlayer = {...state.player, inventory: updatedPlayerItems};
             return {...state, player: updatedPlayer};
         case 'DAMAGE':
-            let enemy = checkForDeath(action.payload, state.player);
-            let updatedPlayerH = {...state.player, health: state.player.health - 1};
+            let [enemy, enemyDied] = checkForDeath(action.payload, state.player);
+            let ran = ~~(Math.random() * 100);
+            let missed = ran < missChance(enemy.speed, state.player.speed);
+            let updatedPlayerH = enemyDied ? {...state.player} : {...state.player, health: state.player.health - missed ? 0 : getDamage(enemy.attack, state.player.defense)};
             return {...state, player: updatedPlayerH, enemy};
         case 'START_GAME':
             let playerStart = action.payload?.player;
