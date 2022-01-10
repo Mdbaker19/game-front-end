@@ -4,9 +4,12 @@ import GameContext from '../store/game-context';
 
 const Enemy = props => {
     const [state, gameCtx] = useContext(GameContext);
-
+    
     return (
         <Card>
+            <div>
+                <img src={state.enemy.img} alt="Enemy img" />
+            </div>
             <h1>{state.enemy.type}</h1>
             <h3>Lvl: {state.enemy.level}</h3>
             <h3>HP: {state.enemy.health}</h3>

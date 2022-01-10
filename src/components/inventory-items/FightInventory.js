@@ -1,16 +1,19 @@
-import Item from './Item';
-import Button from './Button';
+import Item from '../inventory-items/Item';
+import Button from '../UI/Button';
 import classes from './FightInvetory.module.css';
 
 const FightInventory = props => {
 
-    const playerUseItem = (item) => {
-        props.useItem(item);
+    // not great but for now : pass index to remove that item from inventory array
+    const playerUseItem = (item, index) => {
+        props.useItem(item, index);
     }
     
     const closeFightInventoryHandler = () => {
         props.closeInventory();
     }
+
+    console.log(props);
 
     return (
         <section className={classes.fullBox}>
@@ -19,7 +22,7 @@ const FightInventory = props => {
                 {props.items.map((item, idx) => {
                     return <Item key={`${idx}_${item.name}`}
                                  item={item}
-                                 useItem={playerUseItem.bind(null, item)}
+                                 useItem={playerUseItem.bind(null, item, idx)}
                     />
                 })}
             </div>

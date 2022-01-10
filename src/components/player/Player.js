@@ -1,16 +1,16 @@
-import Card from './UI/Card';
-import FightInventory from './UI/FightInventory';
+import Card from '../UI/Card';
+import FightInventory from '../inventory-items/FightInventory';
 import {useContext, useState} from 'react';
-import GameContext from '../store/game-context';
-import {formatName} from '../util/format';
+import GameContext from '../../store/game-context';
+import {formatName} from '../../util/format';
 import classes from './Player.module.css';
 
 const Player = () => {
     const [state, playerCtx] = useContext(GameContext);
     const [showItems, setShowItems] = useState(false);
 
-    const playerUseItem = (item) => {
-        playerCtx.updateItem(item, -1);
+    const playerUseItem = (item, index) => {
+        playerCtx.updateItem(item, index, -1);
     }
     
     const showItemsHandler = () => {
@@ -19,6 +19,24 @@ const Player = () => {
 
     const closeInventoryHandler = () => {
         setShowItems(false);
+    }
+
+    const formatInventory = (inventory) => {
+        let updated = {};
+        let items = [];
+        for(let i = 0; i < inventory.length; i++) {
+            let it = inventory[i];
+            let name = it.name;
+            if(updated[name] === undefined) {
+                updated[name] = {...it, quantity: 1};
+            } else {
+                updated[name].quantity += 1;
+            }
+        }
+        for(const [key, item] of Object.entries(updated)) {
+            items.push(item);
+        }
+        return items;
     }
 
     const player = state.player;
@@ -34,7 +52,7 @@ const Player = () => {
                 <h3>HP: {player.health}</h3>
                 {!showItems && <button onClick={showItemsHandler}>View Inventory</button>}
                 {showItems && <FightInventory
-                    items={player.inventory}
+                    items={formatInventory(player.inventory)}
                     useItem={playerUseItem}
                     closeInventory={closeInventoryHandler}
                 />}

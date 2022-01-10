@@ -2,8 +2,9 @@
 import {useContext} from 'react';
 import GameContext from '../store/game-context';
 import {getRandomType} from '../util/stateFunctions';
-import SaveInventoryView from '../components/UI/Inventory-view';
+import SaveInventoryView from '../components/inventory-items/Inventory-view';
 import classes from './SaveState.module.css';
+import AccountView from '../components/UI/AccountView';
 
 const SaveStates = props => {
 
@@ -11,19 +12,25 @@ const SaveStates = props => {
     
     const playerDataUI = (playerSaveOne) => {
         console.log(playerSaveOne);
-        return `Level: ${playerSaveOne.lvl},
-         Player Lvl: ${playerSaveOne.playerLvl}, 
-         HP: ${playerSaveOne.health}, 
-         Inventory: ${playerSaveOne.inventory?.length} items`;
+        return (
+               <>
+                    Level: ${playerSaveOne.lvl},
+                    Player Lvl: ${playerSaveOne.playerLvl},
+                    HP: ${playerSaveOne.health},
+                    {<AccountView items={playerSaveOne.inventory} stats={playerSaveOne.stats}/>}
+                </>
+        );
     }
     
     const loadSaveHandler = (id) => {
         let saveChoice = props.saveOptions.filter(save => save.saveId === id)[0];
         let player = saveChoice.data;
         player.saveId = saveChoice.saveId;
+        let [type, img] = getRandomType();
         let enemy = {
             health: player.lvl * 10,
-            type: getRandomType(),
+            type,
+            img,
             level: player.lvl
         };
         let data = {player, enemy};

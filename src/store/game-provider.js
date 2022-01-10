@@ -15,8 +15,8 @@ const GameProvider = props => {
         dispatchGameAction({type: 'DAMAGE', payload: enemy});
     }
     
-    const updateItemHandler = (item, status) => {
-        dispatchGameAction({type: 'USE_ITEM', payload: {item, status}});
+    const updateItemHandler = (item, index, status) => {
+        dispatchGameAction({type: 'USE_ITEM', payload: {item, status, index}});
     }
     
     const startGameHandler = (gameData) => {

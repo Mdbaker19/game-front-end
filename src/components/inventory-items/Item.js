@@ -10,7 +10,7 @@ const Item = props => {
     
     return (
         <div className={classes.item}>
-            <p>{item.name}</p>
+            <p>{item.quantity}X {item.name}</p>
             <button onClick={useItemHandler}>Use Item</button>
         </div>
     )

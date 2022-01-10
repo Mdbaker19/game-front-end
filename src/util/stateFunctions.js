@@ -1,6 +1,8 @@
 import * as gameConst from './constants';
+
 export const getRandomType = () => {
-    return gameConst.enemyTypes[~~(Math.random() * gameConst.enemyTypes.length)];
+    let idx = ~~(Math.random() * gameConst.enemyTypes.length);
+    return [gameConst.enemyTypes[idx], gameConst.enemyImgs[idx]];
 }
 
 export const calcDamage = (player, enemy) => {
@@ -15,9 +17,14 @@ export const checkForDeath = (enemy, player) => {
 
 
 function getNextEnemy(enemy, player) {
+    let [type, img] = getRandomType();
     return {
         health: player.lvl * 10,
-        type: getRandomType(),
-        level: enemy.level + 1
+        type,
+        img,
+        level: enemy.level + 1,
+        attack: 1,
+        defense: 1,
+        speed: 1
     }
 }

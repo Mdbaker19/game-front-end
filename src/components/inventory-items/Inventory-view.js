@@ -7,7 +7,7 @@ const SaveInventoryView = props => {
         <>
             { isShowInventory && props.inventory.map((item, idx) => {
                 return <p key={idx}>item.name</p>
-            })}
+            })} 
         </>
     )
 }

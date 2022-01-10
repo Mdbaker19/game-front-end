@@ -1,5 +1,5 @@
 import './App.css';
-import Player from './components/Player';
+import Player from './components/player/Player';
 import Enemy from './components/Enemy';
 import Control from './components/UI/Control';
 import SaveStates from './components/SaveStates';
@@ -9,7 +9,6 @@ import {getPlayerData} from './actions/Game-fetch-get';
 import {useState} from 'react';
 
 // store / shop
-// use items, items need unique id's or something to pull from / update player inventory list data
 // refactor items display to have a count rather than list it multi times
 
 function App() {

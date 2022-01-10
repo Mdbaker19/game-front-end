@@ -1,3 +1,3 @@
 test('', () => {
-    expect(1).toEqual(9)
+    expect(1).toEqual(9);
 });
