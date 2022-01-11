@@ -14,9 +14,9 @@ const SaveStates = props => {
         console.log(playerSaveOne);
         return (
                <>
-                    Level: ${playerSaveOne.lvl},
-                    Player Lvl: ${playerSaveOne.playerLvl},
-                    HP: ${playerSaveOne.health},
+                    Level: {playerSaveOne.lvl},
+                    Player Lvl: {playerSaveOne.playerLvl},
+                    HP: {playerSaveOne.health},
                     Wallet: ${playerSaveOne.wallet}
                     {<AccountView items={playerSaveOne.inventory} stats={playerSaveOne.stats}/>}
                 </>
@@ -27,8 +27,9 @@ const SaveStates = props => {
         let saveChoice = props.saveOptions.filter(save => save.saveId === id)[0];
         let player = saveChoice.data;
         player.saveId = saveChoice.saveId;
-        let enemy = getEnemy(player.lvl);
-        
+        // a multiplied effect on enemy
+        let enemyRandomizer = ~~(Math.random() * 5);
+        let enemy = getEnemy(player.lvl, enemyRandomizer);
         let data = {player, enemy};
         loginCtx.startGame(data);
         props.loadThisSave();
